@@ -16,7 +16,7 @@ Compilateur : gcc version 7.4.0
 
 #include <string>
 
-enum class Roles {FATHER, MOTHER, SON, DAUGHTER};
+
 
 class Famille {
 public:
