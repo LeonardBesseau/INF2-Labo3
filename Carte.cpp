@@ -21,6 +21,5 @@ std::string Carte::toString() const {
 }
 
 std::string Carte::getMemberName() const{
-    string
     return std::__cxx11::string();
 }
