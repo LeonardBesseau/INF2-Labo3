@@ -23,3 +23,7 @@ std::string Carte::toString() const {
 std::string Carte::getMemberName() const{
     return std::__cxx11::string();
 }
+
+std::ostream &operator<<(std::ostream &lhs, const Carte &rhs) {
+    return lhs<<rhs.toString();
+}

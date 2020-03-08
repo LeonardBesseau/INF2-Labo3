@@ -23,9 +23,9 @@ public:
     void displayStack();
 
 private:
-    unsigned Turns;
+    unsigned turns;
     unsigned cardPerFamilly;
-    std::vector<Carte> Stack;
+    std::vector<Carte> stack;
     std::vector<Joueur> player;
 };
 

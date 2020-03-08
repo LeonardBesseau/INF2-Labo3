@@ -15,8 +15,10 @@ Compilateur : gcc version 7.4.0
 #define LABO3_CARTE_H
 
 #include <string>
+#include <iostream>
 
 class Carte {
+    friend std::ostream &operator<<(std::ostream &lhs, const Carte &rhs);
 public:
     Carte(unsigned short familly, unsigned short member);
 
