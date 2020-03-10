@@ -49,19 +49,20 @@ unsigned int Partie::getCardPerFamily() const {
     return cardPerFamily;
 }
 
-std::vector<unsigned> Partie::play() {
+std::vector<unsigned> Partie::play(unsigned startPerson) {
     std::vector<unsigned int> score(player.size());
     bool isPlaying = true;
     unsigned turn = 1;
     while (isPlaying){
         std::cout << "*** Tour "<< turn++ << " ***"<<std::endl;
-        for (Joueur j : player){
-            //j.play();
+        for (int i = 0; i < player.size(); ++i) {
+            Joueur* current = &player.at((startPerson+i)%player.size());
+            //current.play();
             if(!stack.empty()){
-                //j.ajouteCarte(stack.back());
+                current->ajoutCarte(stack.back());
                 stack.pop_back();
             }
-            isPlaying = !(stack.empty()  && j.mainVide());
+            isPlaying = !(stack.empty()  && current->mainVide());
         }
     }
     for (int i = 0; i < player.size(); ++i) {

@@ -24,7 +24,7 @@ public:
 
     unsigned int getCardPerFamily() const;
 
-    std::vector<unsigned> play();
+    std::vector<unsigned> play(unsigned startPerson);
 
 private:
     unsigned turns;
