@@ -14,6 +14,6 @@ Compilateur : gcc version 7.4.0
 #include <iostream>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Baise tes morts!" << std::endl;
     return 0;
 }
