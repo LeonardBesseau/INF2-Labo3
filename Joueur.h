@@ -20,6 +20,7 @@ public:
     void ajoutCarte(Carte& carte);
     void supprimerCarte(Carte& carte);
     void ajoutSurTable();
+    unsigned nbCarteStack();
 
 
 

@@ -39,8 +39,7 @@ void Joueur::demanderCarte(Joueur& joueur, const unsigned short& famille,const u
     {
         if(c.getFamily() == famille && c.getMember() == member)
         {
-            Carte carte(c.getFamily(),c.getMember());
-            joueur.supprimerCarte(carte);
+            joueur.supprimerCarte(c);
             this->ajoutCarte(c);
         }
     }
@@ -57,4 +56,9 @@ void Joueur::supprimerCarte(Carte& carte){
 
 bool Joueur::mainVide(){
     return cartesEnMains.empty();
+}
+
+unsigned Joueur::nbCarteStack()
+{
+    return familleSurTable.size();
 }
