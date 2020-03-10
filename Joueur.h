@@ -15,7 +15,7 @@ public:
     Joueur(const std::string& name, const std::vector<Carte> cartes): nomJoueur(name),cartesEnMains(cartes) {}
     Joueur() = default;
     bool detecterFamille() const;
-    void mainVide();
+    bool mainVide();
     std::vector<Carte> cartesEnMain() const;
     void demanderCarte(Joueur& joueur, const unsigned short& famille, const unsigned short member);
     void ajoutCarte(Carte& carte);

@@ -6,8 +6,10 @@
 #include <iostream>
 #include <algorithm>
 
-Partie::Partie(unsigned nbPlayer, unsigned nbFamilly, unsigned cardsPerFamily, unsigned cardsPerPlayer)
-        : cardPerFamily(cardsPerFamily), turns(0), player(nbPlayer) {
+Partie::Partie(const std::vector<std::string> &playerName, unsigned nbFamilly, unsigned cardsPerFamily,
+               unsigned cardsPerPlayer)
+        : cardPerFamily(cardsPerFamily), turns(0) {
+
     std::vector<Carte> cards;
     cards.reserve(nbFamilly * cardsPerFamily);
     for (unsigned family = 1; family <= nbFamilly; ++family) {
@@ -16,11 +18,11 @@ Partie::Partie(unsigned nbPlayer, unsigned nbFamilly, unsigned cardsPerFamily, u
         }
     }
     std::random_shuffle(cards.begin(), cards.end());
-    for (int player = 0; player < nbPlayer; ++player) {
-        //addDeck
-        // cards.begin()+player*cardsPerPlayer, cards.begin()+player*cardsPerPlayer+cardsPerPlayer
+    for (int i = 0; i < playerName.size(); ++i) {
+        player.emplace_back(playerName.at(i), std::vector<Carte>(cards.begin() + i * cardsPerPlayer,
+                                                                 cards.begin() + i * cardsPerPlayer + cardsPerPlayer));
     }
-    stack.assign(cards.begin() + nbPlayer * cardsPerPlayer, cards.end());
+    stack.assign(cards.begin() + playerName.size() * cardsPerPlayer, cards.end());
 }
 
 unsigned int Partie::getTurns() const {
@@ -45,6 +47,22 @@ void Partie::displayStack() {
 
 unsigned int Partie::getCardPerFamily() const {
     return cardPerFamily;
+}
+
+std::vector<unsigned> Partie::play() {
+    std::vector<unsigned int> score(player.size());
+    bool isPlaying = true;
+    while (isPlaying){
+        for (Joueur j : player){
+            //j.play();
+            if(!stack.empty()){
+                //j.addCarte(stack.back());
+                stack.pop_back();
+            }
+            isPlaying = !stack.empty()  || j.mainVide()
+        }
+    }
+    return score;
 }
 
 
