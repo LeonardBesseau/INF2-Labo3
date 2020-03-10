@@ -7,16 +7,32 @@
 
 
 
-void Joueur::detecterFamille() const
+bool Joueur::detecterFamille() const
 {
-    for (size_t i = 0; i<this->cartesEnMains.size();i++)
+    size_t count=0;
+    for (size_t i = 0; i<this->cartesEnMains.size()-1;i++)
     {
-        if(!(this->mainVide()))
-        {
+        if(cartesEnMains.at(i).getFamily() == cartesEnMains.at(i+1).getFamily()) {
+            count++;
+            if (count == cartesEnMains.size()-1) {
+                return true;
+            }
+        } else return false;
+    }
 
+}
+
+void Joueur::ajoutSurTable(bool familleComplete)
+{
+    if(familleComplete)
+    {
+        for(Carte c : this->cartesEnMains)
+        {
+            this->familleSurTable.push_back(c);
         }
     }
 }
+
 std::vector<Carte> Joueur::cartesEnMain() const {
     return this->cartesEnMains;
 }
@@ -26,8 +42,7 @@ void Joueur::demanderCarte(Joueur& joueur, const unsigned short& famille,const u
         if(c.getFamily() == famille && c.getMember() == member)
         {
             Carte carte(c.getFamily(),c.getMember());
-            auto pos = find(joueur.cartesEnMains.begin(), joueur.cartesEnMains.end(),carte);
-            joueur.cartesEnMains.erase(pos);
+            joueur.supprimerCarte(carte);
             this->ajoutCarte(c);
         }
     }
@@ -37,8 +52,11 @@ void Joueur::ajoutCarte(Carte& carte)
     this->cartesEnMains.push_back(carte);
 }
 
-void Joueur::supprimerCarte(){
+void Joueur::supprimerCarte(Carte& carte){
+    auto pos = find(this->cartesEnMains.begin(), this->cartesEnMains.end(),carte);
+    this->cartesEnMains.erase(pos);
 }
 
-void Joueur::mainVide()
-{};
+void Joueur::mainVide(){
+
+}

@@ -14,12 +14,15 @@ class Joueur {
 public:
     Joueur(const std::string& name, const std::vector<Carte> cartes): nomJoueur(name),cartesEnMains(cartes) {}
     Joueur() = default;
-    void detecterFamille() const;
+    bool detecterFamille() const;
     void mainVide();
     std::vector<Carte> cartesEnMain() const;
     void demanderCarte(Joueur& joueur, const unsigned short& famille, const unsigned short member);
     void ajoutCarte(Carte& carte);
-    void supprimerCarte();
+    void supprimerCarte(Carte& carte);
+    void ajoutSurTable(bool familleComplete);
+
+
 
     //unsigned short compteCarte(){};
 private:
