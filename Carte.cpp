@@ -6,10 +6,10 @@
 #include <algorithm>
 
 
-Carte::Carte(unsigned short familly, unsigned short member) : familly(familly), member(member) {}
+Carte::Carte(unsigned short familly, unsigned short member) : family(familly), member(member) {}
 
-unsigned short Carte::getFamilly() const {
-    return familly;
+unsigned short Carte::getFamily() const {
+    return family;
 }
 
 unsigned short Carte::getMember() const {
@@ -17,7 +17,7 @@ unsigned short Carte::getMember() const {
 }
 
 std::string Carte::toString() const {
-    return std::to_string(familly) + getMemberName();
+    return std::to_string(family) + getMemberName();
 }
 
 std::string Carte::getMemberName() const {

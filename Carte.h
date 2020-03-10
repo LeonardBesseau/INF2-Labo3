@@ -22,7 +22,7 @@ class Carte {
 public:
     Carte(unsigned short familly, unsigned short member);
 
-    unsigned short getFamilly() const;
+    unsigned short getFamily() const;
 
     unsigned short getMember() const;
 
@@ -30,7 +30,7 @@ public:
 
 private:
     std::string getMemberName() const;
-    unsigned short familly;
+    unsigned short family;
     unsigned short member;
 };
 
