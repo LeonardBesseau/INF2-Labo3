@@ -16,7 +16,7 @@ Compilateur : gcc version 7.4.0
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    Carte a(1, 26);
+    Carte a(1, 29);
     std::cout << a;
     return 0;
 }

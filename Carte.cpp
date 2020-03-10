@@ -23,11 +23,12 @@ std::string Carte::toString() const {
 std::string Carte::getMemberName() const {
     std::string output;
     unsigned short number = member;
-    do {
-        char b = 'A' + number % 26;
+    while (number > 0) {
+        char digit = --number % 26;
+        char b = (char) ('A' + digit);
         output += b;
-        number /= 26;
-    } while (number > 0);
+        number = (number - digit)/26;
+    }
 
     std::reverse(output.begin(), output.end());
     return output;
