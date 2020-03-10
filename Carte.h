@@ -37,6 +37,10 @@ public:
 
     bool operator>=(const Carte &rhs) const;
 
+    bool operator==(const Carte &rhs) const;
+
+    bool operator!=(const Carte &rhs) const;
+
 private:
     std::string getMemberName() const;
 

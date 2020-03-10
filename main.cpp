@@ -12,12 +12,14 @@ Compilateur : gcc version 7.4.0
 
 --------------------------- */
 #include <iostream>
-#include "Carte.h"
+#include "Partie.h"
+#include <algorithm>
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    Carte a(1, 1024);
-    std::cout << a;
+    std::vector<std::string> name{"Alice", "Bobby", "Carol", "Danny"};
+    Partie a(name, 8, 4, 5);
+    std::vector<unsigned> score = a.play(1);
 
     return 0;
 }

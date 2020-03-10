@@ -39,6 +39,7 @@ public:
 
     bool giveCard(const Carte &c);
 
+    const std::string &getNomJoueur() const;
 
 
     //unsigned short compteCarte(){};

@@ -39,7 +39,13 @@ std::ostream &operator<<(std::ostream &lhs, const Carte &rhs) {
 }
 
 bool Carte::operator<(const Carte &rhs) const {
-    return family < rhs.family || member < rhs.member;
+    if (family < rhs.family) {
+        return true;
+    }
+    if (family > rhs.family) {
+        return false;
+    }
+    return member < rhs.member;
 }
 
 bool Carte::operator>(const Carte &rhs) const {
@@ -52,4 +58,13 @@ bool Carte::operator<=(const Carte &rhs) const {
 
 bool Carte::operator>=(const Carte &rhs) const {
     return !(*this < rhs);
+}
+
+bool Carte::operator==(const Carte &rhs) const {
+    return family == rhs.family &&
+           member == rhs.member;
+}
+
+bool Carte::operator!=(const Carte &rhs) const {
+    return !(rhs == *this);
 }

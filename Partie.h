@@ -15,8 +15,6 @@ public:
     Partie(const std::vector<std::string> &playerName, unsigned nbFamily, unsigned cardsPerFamily,
            unsigned cardsPerPlayer);
 
-    unsigned int getTurns() const;
-
     const std::vector<Carte> &getStack() const;
 
     const std::vector<Joueur> &getPlayerList() const;
@@ -28,7 +26,6 @@ public:
     std::vector<unsigned> play(unsigned startPerson);
 
 private:
-    unsigned turns;
     unsigned cardPerFamily;
     std::vector<Carte> stack;
     std::vector<Joueur> player;
