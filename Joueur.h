@@ -11,7 +11,7 @@
 
 class Joueur {
 public:
-    Joueur(const std::string& name, const std::vector<Carte> cartes): nomJoueur(name),cartesEnMains(cartes) {}
+    Joueur(const std::string& name, const std::vector<Carte> &cartes): nomJoueur(name),cartesEnMains(cartes){}
     Joueur() = default;
     void detecterFamille();
     bool mainVide();

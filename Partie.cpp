@@ -65,7 +65,7 @@ std::vector<unsigned> Partie::play() {
         }
     }
     for (int i = 0; i < player.size(); ++i) {
-      //  score.at(i) =
+        score.at(i) = player.at(i).nbCarteStack()/cardPerFamily;
     }
     return score;
 }
