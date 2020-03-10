@@ -19,6 +19,7 @@ Compilateur : gcc version 7.4.0
 
 class Carte {
     friend std::ostream &operator<<(std::ostream &lhs, const Carte &rhs);
+
 public:
     Carte(unsigned short familly, unsigned short member);
 
@@ -28,8 +29,17 @@ public:
 
     std::string toString() const;
 
+    bool operator<(const Carte &rhs) const;
+
+    bool operator>(const Carte &rhs) const;
+
+    bool operator<=(const Carte &rhs) const;
+
+    bool operator>=(const Carte &rhs) const;
+
 private:
     std::string getMemberName() const;
+
     unsigned short family;
     unsigned short member;
 };

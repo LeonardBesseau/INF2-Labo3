@@ -7,20 +7,37 @@
 #include <vector>
 #include "Carte.h"
 #include <string>
+#include <iostream>
 
 
 class Joueur {
+    friend std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs);
 public:
-    Joueur(const std::string& name, const std::vector<Carte> &cartes): nomJoueur(name),cartesEnMains(cartes){}
+    Joueur(const std::string &name, const std::vector<Carte> &cartes) : nomJoueur(name), cartesEnMains(cartes) {}
+
     Joueur() = default;
-    void detecterFamille();
+
+    void detecterFamille(unsigned cardsPerFamily);
+
     bool mainVide();
+
     std::vector<Carte> cartesEnMain() const;
-    void demanderCarte(Joueur& joueur, const unsigned short& famille, const unsigned short member);
-    void ajoutCarte(Carte& carte);
-    void supprimerCarte(Carte& carte);
-    void ajoutSurTable();
+
+    void demanderCarte(Joueur &joueur, const unsigned short &famille, unsigned short member);
+
+    void ajoutCarte(Carte &carte);
+
+    void supprimerCarte(Carte &carte);
+
+    void ajoutSurTable(unsigned index, unsigned cardsPerFamily);
+
     unsigned nbCarteStack();
+
+    Carte choseCard() const;
+
+    void play(Joueur &target, unsigned cardsPerFamily);
+
+    bool giveCard(const Carte &c);
 
 
 

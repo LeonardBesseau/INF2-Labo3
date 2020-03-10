@@ -27,7 +27,7 @@ std::string Carte::getMemberName() const {
         char digit = --number % 26;
         char b = (char) ('A' + digit);
         output += b;
-        number = (number - digit)/26;
+        number = (number - digit) / 26;
     }
 
     std::reverse(output.begin(), output.end());
@@ -36,4 +36,20 @@ std::string Carte::getMemberName() const {
 
 std::ostream &operator<<(std::ostream &lhs, const Carte &rhs) {
     return lhs << rhs.toString();
+}
+
+bool Carte::operator<(const Carte &rhs) const {
+    return family < rhs.family || member < rhs.member;
+}
+
+bool Carte::operator>(const Carte &rhs) const {
+    return rhs < *this;
+}
+
+bool Carte::operator<=(const Carte &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Carte::operator>=(const Carte &rhs) const {
+    return !(*this < rhs);
 }

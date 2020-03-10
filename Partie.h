@@ -12,7 +12,8 @@
 
 class Partie {
 public:
-    Partie(const std::vector<std::string> &playerName,unsigned  nbFamilly, unsigned cardsPerFamily, unsigned cardsPerPlayer);
+    Partie(const std::vector<std::string> &playerName, unsigned nbFamily, unsigned cardsPerFamily,
+           unsigned cardsPerPlayer);
 
     unsigned int getTurns() const;
 
