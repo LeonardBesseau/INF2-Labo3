@@ -8,7 +8,7 @@
 
 
 
-bool Joueur::detecterFamille() const
+void Joueur::detecterFamille()
 {
     size_t count=0;
     for (size_t i = 0; i<this->cartesEnMains.size()-1;i++)
@@ -16,22 +16,19 @@ bool Joueur::detecterFamille() const
         if(cartesEnMains.at(i).getFamily() == cartesEnMains.at(i+1).getFamily()) {
             count++;
             if (count == cartesEnMains.size()-1) {
-                return true;
+                ajoutSurTable();
             }
-        } else return false;
+        }
     }
 
 }
 
-void Joueur::ajoutSurTable(bool familleComplete)
+void Joueur::ajoutSurTable()
 {
-    if(familleComplete)
-    {
         for(Carte c : this->cartesEnMains)
         {
             this->familleSurTable.push_back(c);
         }
-    }
 }
 
 std::vector<Carte> Joueur::cartesEnMain() const {
@@ -58,6 +55,6 @@ void Joueur::supprimerCarte(Carte& carte){
     this->cartesEnMains.erase(pos);
 }
 
-void Joueur::mainVide(){
-
+bool Joueur::mainVide(){
+    return cartesEnMains.empty();
 }
