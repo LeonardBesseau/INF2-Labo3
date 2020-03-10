@@ -52,15 +52,20 @@ unsigned int Partie::getCardPerFamily() const {
 std::vector<unsigned> Partie::play() {
     std::vector<unsigned int> score(player.size());
     bool isPlaying = true;
+    unsigned turn = 1;
     while (isPlaying){
+        std::cout << "*** Tour "<< turn++ << " ***"<<std::endl;
         for (Joueur j : player){
             //j.play();
             if(!stack.empty()){
-                //j.addCarte(stack.back());
+                //j.ajouteCarte(stack.back());
                 stack.pop_back();
             }
-            isPlaying = !stack.empty()  || j.mainVide()
+            isPlaying = !(stack.empty()  && j.mainVide());
         }
+    }
+    for (int i = 0; i < player.size(); ++i) {
+      //  score.at(i) =
     }
     return score;
 }
