@@ -4,6 +4,7 @@
 
 #include "Joueur.h"
 #include "Carte.h"
+#include <algorithm>
 
 
 

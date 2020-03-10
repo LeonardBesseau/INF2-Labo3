@@ -7,7 +7,6 @@
 #include <vector>
 #include "Carte.h"
 #include <string>
-#include <algorithm>
 
 
 class Joueur {
