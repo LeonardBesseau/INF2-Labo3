@@ -12,8 +12,11 @@ Compilateur : gcc version 7.4.0
 
 --------------------------- */
 #include <iostream>
+#include "Carte.h"
 
 int main() {
-    std::cout << "Baise tes morts!" << std::endl;
+    std::cout << "Hello, World!" << std::endl;
+    Carte a(1, 26);
+    std::cout << a;
     return 0;
 }

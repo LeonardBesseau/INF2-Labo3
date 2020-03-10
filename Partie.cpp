@@ -7,15 +7,15 @@
 #include <algorithm>
 
 Partie::Partie(unsigned nbPlayer, unsigned nbFamilly, unsigned cardsPerFamily, unsigned cardsPerPlayer)
-        : cardPerFamilly(cardsPerFamily), turns(0) {
-    std::vector<Carte> cards(nbFamilly * cardsPerFamily);
+        : cardPerFamily(cardsPerFamily), turns(0), player(nbPlayer) {
+    std::vector<Carte> cards;
+    cards.reserve(nbFamilly * cardsPerFamily);
     for (unsigned family = 1; family <= nbFamilly; ++family) {
         for (unsigned member = 1; member < cardsPerFamily; ++member) {
             cards.emplace_back(family, member);
         }
     }
     std::random_shuffle(cards.begin(), cards.end());
-    player = std::vector<Joueur>(nbPlayer);
     for (int player = 0; player < nbPlayer; ++player) {
         //addDeck
         // cards.begin()+player*cardsPerPlayer, cards.begin()+player*cardsPerPlayer+cardsPerPlayer
@@ -41,6 +41,10 @@ void Partie::displayStack() {
         std::cout << card << " ";
     }
     std::cout << std::endl;
+}
+
+unsigned int Partie::getCardPerFamily() const {
+    return cardPerFamily;
 }
 
 
