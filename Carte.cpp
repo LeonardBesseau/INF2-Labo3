@@ -12,14 +12,6 @@ unsigned short Carte::getFamily() const {
     return family;
 }
 
-unsigned short Carte::getMember() const {
-    return member;
-}
-
-std::string Carte::toString() const {
-    return std::to_string(family) + getMemberName();
-}
-
 std::string Carte::getMemberName() const {
     std::string output;
     unsigned short number = member;
@@ -35,7 +27,7 @@ std::string Carte::getMemberName() const {
 }
 
 std::ostream &operator<<(std::ostream &lhs, const Carte &rhs) {
-    return lhs << rhs.toString();
+    return lhs << std::to_string(rhs.family) + rhs.getMemberName();
 }
 
 bool Carte::operator<(const Carte &rhs) const {

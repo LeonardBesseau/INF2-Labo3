@@ -7,6 +7,9 @@
 #include <algorithm>
 
 
+Joueur::Joueur(const std::string &name, const std::vector<Carte> &cartes) : nomJoueur(name), cartesEnMains(cartes) {}
+
+
 void Joueur::detecterFamille(unsigned cardsPerFamily) {
     std::sort(cartesEnMains.begin(), cartesEnMains.end());
     size_t index = 0;
@@ -51,10 +54,6 @@ void Joueur::ajoutSurTable(unsigned index, unsigned cardsPerFamily) {
      */
 }
 
-std::vector<Carte> Joueur::cartesEnMain() const {
-    return this->cartesEnMains;
-}
-
 /*
 void Joueur::demanderCarte(Joueur &joueur, const unsigned short &famille, const unsigned short member) {
     for (Carte c : joueur.cartesEnMain()) {
@@ -68,11 +67,6 @@ void Joueur::demanderCarte(Joueur &joueur, const unsigned short &famille, const 
 void Joueur::ajoutCarte(Carte &carte, unsigned cardsPerFamily) {
     this->cartesEnMains.push_back(carte);
     detecterFamille(cardsPerFamily);
-}
-
-void Joueur::supprimerCarte(Carte &carte) {
-    auto pos = find(this->cartesEnMains.begin(), this->cartesEnMains.end(), carte);
-    this->cartesEnMains.erase(pos);
 }
 
 bool Joueur::mainVide() const {
@@ -138,3 +132,4 @@ std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs) {
 const std::string &Joueur::getNomJoueur() const {
     return nomJoueur;
 }
+

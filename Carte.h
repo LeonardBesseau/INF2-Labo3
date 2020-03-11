@@ -21,13 +21,19 @@ class Carte {
     friend std::ostream &operator<<(std::ostream &lhs, const Carte &rhs);
 
 public:
+    /**
+     * Construct a Carte with a family and a member
+     * @param familly an unsigned
+     * @param member an unsigned
+     * @attention no check for uniqueness are made there can be multiple card with the same family and member
+     */
     Carte(unsigned short familly, unsigned short member);
 
+    /**
+     * Get the member attribute
+     * @return an unsigned with the value of the familly
+     */
     unsigned short getFamily() const;
-
-    unsigned short getMember() const;
-
-    std::string toString() const;
 
     bool operator<(const Carte &rhs) const;
 
@@ -42,6 +48,10 @@ public:
     bool operator!=(const Carte &rhs) const;
 
 private:
+    /**
+     * Construct a string composed of alphabetical character from the member value
+     * @return a string the member value in base 26
+     */
     std::string getMemberName() const;
 
     unsigned short family;

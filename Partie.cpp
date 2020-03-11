@@ -7,6 +7,12 @@
 #include <algorithm>
 #include <random>
 
+/**
+ * Generate a random number between 0 and maxRange excluding the forbidden number
+ * @param maxRange an unsigned the maximum number in the range (included)
+ * @param forbidden an unsigned a number that cannot be returned by the generator
+ * @return an unsigned in the range [0, maxRange]-forbidden
+ */
 unsigned generateRandomNumber(unsigned maxRange, unsigned forbidden);
 
 unsigned generateRandomNumber(unsigned maxRange, unsigned forbidden) {
@@ -40,41 +46,14 @@ Partie::Partie(const std::vector<std::string> &playerName, unsigned nbFamily, un
     stack.assign(cards.begin() + playerName.size() * cardsPerPlayer, cards.end());
 }
 
-
-const std::vector<Carte> &Partie::getStack() const {
-    return stack;
-}
-
-const std::vector<Joueur> &Partie::getPlayerList() const {
-    return player;
-}
-
-void Partie::displayStack() {
-    std::cout << "Pioche: ";
-    for (Carte card: stack) {
-        std::cout << card << " ";
-    }
-    std::cout << std::endl;
-}
-
-unsigned int Partie::getCardPerFamily() const {
-    return cardPerFamily;
-}
-
 std::vector<unsigned> Partie::play(unsigned startPerson) {
     std::vector<unsigned int> score(player.size());
     bool isPlaying = true;
     unsigned turn = 1;
     while (isPlaying) {
         std::cout << "*** Tour " << turn++ << " ***" << std::endl;
-        for (const auto &j : player) {
-            std::cout << j << std::endl;
-        }
-        std::cout << "Pioche: ";
-        for (const auto &j : stack) {
-            std::cout << j << " ";
-        }
-        std::cout << std::endl;
+        displayPlayer();
+        displayStack();
         for (int i = 0; i < player.size(); ++i) {
             size_t indexCurrent = (startPerson + i) % player.size();
             Joueur *current = &player.at(indexCurrent);
@@ -95,18 +74,27 @@ std::vector<unsigned> Partie::play(unsigned startPerson) {
             }
         }
     }
-    for (const auto &j : player) {
-        std::cout << j << std::endl;
-    }
-    std::cout << "Pioche: ";
-    for (const auto &j : stack) {
-        std::cout << j << " ";
-    }
+    displayPlayer();
+    displayStack();
     std::cout << "La partie est finie !" << std::endl << "Nombre de tours : " << turn << std::endl;
     for (int i = 0; i < player.size(); ++i) {
         score.at(i) = player.at(i).nbCarteStack() / cardPerFamily;
     }
     return score;
+}
+
+void Partie::displayStack() {
+    std::cout << "Pioche: ";
+    for (Carte card: stack) {
+        std::cout << card << " ";
+    }
+    std::cout << std::endl;
+}
+
+void Partie::displayPlayer() {
+    for (const auto &j : player) {
+        std::cout << j << std::endl;
+    }
 }
 
 
