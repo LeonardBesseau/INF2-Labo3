@@ -41,6 +41,7 @@ Partie::Partie(const std::vector<std::string> &playerName, std::vector<Joueur *>
     }
     std::shuffle(cards.begin(), cards.end(), std::mt19937(std::random_device()()));
     for (int i = 0; i < playerName.size(); ++i) {
+        list.at(i)->clearPlayer();
         list.at(i)->assign(playerName.at(i), std::vector<Carte>(cards.begin() + i * cardsPerPlayer,
                                                                 cards.begin() + i * cardsPerPlayer + cardsPerPlayer));
         player.push_back(list.at(i));

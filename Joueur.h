@@ -61,6 +61,8 @@ public:
      */
     unsigned nbCarteStack();
 
+    void clearPlayer();
+
 
     /**
      * Player game loop

@@ -138,3 +138,7 @@ void Joueur::assign(const std::string &name, const std::vector<Carte> &cartes) {
     cartesEnMains = cartes;
 }
 
+void Joueur::clearPlayer() {
+    familleSurTable.clear();
+}
+
