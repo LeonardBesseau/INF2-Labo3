@@ -91,9 +91,8 @@ void Joueur::play(Joueur &target, unsigned cardsPerFamily) {
         Carte ask = choseCard();
         std::cout << nomJoueur << " demande à " << target.nomJoueur << " la carte " << ask << " ";
         if (target.giveCard(ask)) {
-            cartesEnMains.push_back(ask);
+            ajoutCarte(ask, cardsPerFamily);
             std::cout << target.nomJoueur << " donne la carte à " << nomJoueur << std::endl;
-            detecterFamille(cardsPerFamily);
         } else {
             std::cout << "mais " << target.nomJoueur << " ne l'a pas" << std::endl;
             return;
