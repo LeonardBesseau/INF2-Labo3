@@ -55,17 +55,19 @@ std::vector<Carte> Joueur::cartesEnMain() const {
     return this->cartesEnMains;
 }
 
+/*
 void Joueur::demanderCarte(Joueur &joueur, const unsigned short &famille, const unsigned short member) {
     for (Carte c : joueur.cartesEnMain()) {
         if (c.getFamily() == famille && c.getMember() == member) {
             joueur.supprimerCarte(c);
-            this->ajoutCarte(c);
+            this->ajoutCarte(c,);
         }
     }
-}
+}*/
 
-void Joueur::ajoutCarte(Carte &carte) {
+void Joueur::ajoutCarte(Carte &carte, unsigned cardsPerFamily) {
     this->cartesEnMains.push_back(carte);
+    detecterFamille(cardsPerFamily);
 }
 
 void Joueur::supprimerCarte(Carte &carte) {
@@ -73,7 +75,7 @@ void Joueur::supprimerCarte(Carte &carte) {
     this->cartesEnMains.erase(pos);
 }
 
-bool Joueur::mainVide() {
+bool Joueur::mainVide() const {
     return cartesEnMains.empty();
 }
 

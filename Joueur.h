@@ -19,13 +19,13 @@ public:
 
     void detecterFamille(unsigned cardsPerFamily);
 
-    bool mainVide();
+    bool mainVide() const;
 
     std::vector<Carte> cartesEnMain() const;
 
-    void demanderCarte(Joueur &joueur, const unsigned short &famille, unsigned short member);
+    //   void demanderCarte(Joueur &joueur, const unsigned short &famille, unsigned short member);
 
-    void ajoutCarte(Carte &carte);
+    void ajoutCarte(Carte &carte, unsigned cardsPerFamily);
 
     void supprimerCarte(Carte &carte);
 
