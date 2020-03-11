@@ -22,6 +22,10 @@ public:
      */
     Joueur(const std::string &name, const std::vector<Carte> &cartes);
 
+    Joueur() = default;
+
+    void assign(const std::string &name, const std::vector<Carte> &cartes);
+
     /**
      * Check if a family is completed and if it is, put the family on the table
      * @param cardsPerFamily an unsigned with the number of cards per family
@@ -88,11 +92,10 @@ protected:
      * @return a Carte, the one to ask from the other player
      */
     virtual Carte choseCard() const;
-
-private:
     std::string nomJoueur;
     std::vector<Carte> cartesEnMains;
     std::vector<Carte> familleSurTable;
+
 };
 
 

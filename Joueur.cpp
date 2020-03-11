@@ -133,3 +133,8 @@ const std::string &Joueur::getNomJoueur() const {
     return nomJoueur;
 }
 
+void Joueur::assign(const std::string &name, const std::vector<Carte> &cartes) {
+    nomJoueur = name;
+    cartesEnMains = cartes;
+}
+

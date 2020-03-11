@@ -7,6 +7,7 @@
 
 #include "Carte.h"
 #include "Joueur.h"
+#include "MeilleurJoueur.h"
 #include <vector>
 #include <array>
 
@@ -20,7 +21,8 @@ public:
      * @param cardsPerFamily an unsigned, the number of cards per family
      * @param cardsPerPlayer the number of cards per player at the start of the game
      */
-    Partie(const std::vector<std::string> &playerName, unsigned nbFamily, unsigned cardsPerFamily,
+    Partie(const std::vector<std::string> &playerName, std::vector<Joueur *>, unsigned nbFamily,
+           unsigned cardsPerFamily,
            unsigned cardsPerPlayer);
 
     /**
@@ -33,7 +35,7 @@ public:
 private:
     unsigned cardPerFamily;
     std::vector<Carte> stack;
-    std::vector<Joueur> player;
+    std::vector<Joueur *> player;
 
     /**
      * Display the stack on the standard output
