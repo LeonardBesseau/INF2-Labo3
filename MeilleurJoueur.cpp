@@ -6,28 +6,20 @@
 #include <algorithm>
 
 Carte MeilleurJoueur::choseCard() const {
-    unsigned nbTotal = 0;
-    unsigned nbFamily = 0;
+    unsigned index = 0;
+    unsigned family = 0;
     unsigned max = 0;
     unsigned familyMax = 1;
-    while (nbTotal < cartesEnMains.size()) {
-        unsigned count = std::count_if(cartesEnMains.begin(), cartesEnMains.end(), [nbFamily](const Carte &c) {
-            return c.getFamily() == nbFamily;
-        });
+
+    while (index < cartesEnMains.size()) {
+        unsigned count = numberOfMember(family);
         if (count > max) {
-            familyMax = nbFamily;
+            familyMax = family;
             max = count;
         }
-        nbTotal += count;
-        ++nbFamily;
+        index += count;
+        ++family;
     }
-    unsigned member = 1;
-    Carte search = Carte(familyMax, member);
-    auto pos = std::find(cartesEnMains.begin(), cartesEnMains.end(), search);
-    while (pos != cartesEnMains.end()) {
-        ++member;
-        search = Carte(familyMax, member);
-        pos = std::find(cartesEnMains.begin(), cartesEnMains.end(), search);
-    }
-    return search;
+
+    return findMissingMember(familyMax);
 }

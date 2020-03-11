@@ -34,18 +34,24 @@ Partie::Partie(const std::vector<std::string> &playerName, std::vector<Joueur *>
 
     std::vector<Carte> cards;
     cards.reserve(nbFamily * cardsPerFamily);
+
     for (unsigned family = 1; family <= nbFamily; ++family) {
         for (unsigned member = 1; member <= cardsPerFamily; ++member) {
             cards.emplace_back(family, member);
         }
     }
+
+
     std::shuffle(cards.begin(), cards.end(), std::mt19937(std::random_device()()));
+
     for (int i = 0; i < playerName.size(); ++i) {
         list.at(i)->clearPlayer();
         list.at(i)->assign(playerName.at(i), std::vector<Carte>(cards.begin() + i * cardsPerPlayer,
                                                                 cards.begin() + i * cardsPerPlayer + cardsPerPlayer));
+
         player.push_back(list.at(i));
     }
+
     stack.assign(cards.begin() + playerName.size() * cardsPerPlayer, cards.end());
 }
 
@@ -53,15 +59,19 @@ std::vector<unsigned> Partie::play(unsigned startPerson) {
     std::vector<unsigned int> score(player.size());
     bool isPlaying = true;
     unsigned turn = 1;
+
     while (isPlaying) {
         std::cout << "*** Tour " << turn++ << " ***" << std::endl;
         displayPlayer();
         displayStack();
+
         for (int i = 0; i < player.size(); ++i) {
             size_t indexCurrent = (startPerson + i) % player.size();
             Joueur *current = player.at(indexCurrent);
             Joueur *target = player.at(generateRandomNumber(player.size() - 1, indexCurrent));
+
             current->play(*target, cardPerFamily);
+
             if (!stack.empty()) {
                 Carte c = stack.back();
                 current->ajoutCarte(c, cardPerFamily);
@@ -69,6 +79,7 @@ std::vector<unsigned> Partie::play(unsigned startPerson) {
                 std::cout << current->getNomJoueur() << " prend une carte dans la pioche (" << c << ")" << std::endl;
             }
         }
+
         isPlaying = false;
         for (const auto &j : player) {
             if (!j->mainVide()) {
@@ -76,10 +87,13 @@ std::vector<unsigned> Partie::play(unsigned startPerson) {
                 break;
             }
         }
+
     }
+
     displayPlayer();
     displayStack();
     std::cout << "La partie est finie !" << std::endl << "Nombre de tours : " << turn << std::endl;
+
     for (int i = 0; i < player.size(); ++i) {
         score.at(i) = player.at(i)->nbCarteStack() / cardPerFamily;
     }

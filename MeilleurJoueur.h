@@ -9,13 +9,9 @@
 
 class MeilleurJoueur : public Joueur {
 public:
-    MeilleurJoueur(const std::string &name, const std::vector<Carte> &cartes) : Joueur(name, cartes) {};
-
-    MeilleurJoueur() : Joueur() {};
+    MeilleurJoueur() = default;
 protected:
     Carte choseCard() const override;
-
-private:
 };
 
 
