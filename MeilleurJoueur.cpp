@@ -3,7 +3,6 @@
 //
 
 #include "MeilleurJoueur.h"
-#include <algorithm>
 
 Carte MeilleurJoueur::choseCard() const {
     unsigned index = 0;

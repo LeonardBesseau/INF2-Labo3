@@ -35,9 +35,5 @@ int main() {
     for (int k = 0; k < name.size(); ++k) {
         std::cout << name.at(k) << " : " << score.at(k) << std::endl;
     }
-
-
-
-
     return 0;
 }
