@@ -17,9 +17,6 @@
 unsigned generateRandomNumber(unsigned maxRange, unsigned forbidden);
 
 unsigned generateRandomNumber(unsigned maxRange, unsigned forbidden) {
-
-
-    std::random_device rd; // obtain a random number from hardware
     std::mt19937 eng(std::chrono::high_resolution_clock::now().time_since_epoch().count()); // seed the generator
     std::uniform_int_distribution<> distr(0, maxRange);
     unsigned output = distr(eng);
@@ -45,7 +42,8 @@ Partie::Partie(const std::vector<std::string> &playerName, std::vector<Joueur *>
     }
 
 
-    std::shuffle(cards.begin(), cards.end(), std::mt19937(std::random_device()()));
+    std::shuffle(cards.begin(), cards.end(),
+                 std::mt19937(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
 
     for (int i = 0; i < playerName.size(); ++i) {
         list.at(i)->clearPlayer();
