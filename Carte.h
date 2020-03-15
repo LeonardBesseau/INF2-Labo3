@@ -1,16 +1,17 @@
-/* ---------------------------
-Laboratoire : 02
-Fichier : Carte.h
-Auteur(s) : Besseau
-Date : 06-03-2020
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 03
+ Fichier     : main.cpp
+ Auteur(s)   : Léonard Besseau, Alexandra Cerottini, Nicolas Viotti
+ Date        : 24.02.2020
 
-But :
+ But         : Contient les fonctions liées à la classe Carte
 
-Remarque(s) :
+ Remarque(s) :
 
-Compilateur : gcc version 7.4.0
-
---------------------------- */
+ Compilateur : gcc version 7.4.0
+ -----------------------------------------------------------------------------------
+*/
 #ifndef LABO3_CARTE_H
 #define LABO3_CARTE_H
 

@@ -1,6 +1,17 @@
-//
-// Created by leonard on 3/6/20.
-//
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 03
+ Fichier     : Joueur.cpp
+ Auteur(s)   : Léonard Besseau, Alexandra Cerottini, Nicolas Viotti
+ Date        : 24.02.2020
+
+ But         : Contient les fonctions liées à la classe Joueur
+
+ Remarque(s) :
+
+ Compilateur : gcc version 7.4.0
+ -----------------------------------------------------------------------------------
+*/
 
 #include "Joueur.h"
 #include "Carte.h"
@@ -56,13 +67,13 @@ void Joueur::play(Joueur &target, unsigned cardsPerFamily) {
         }
         Carte ask = choseCard();
 
-        std::cout << nomJoueur << " demande à " << target.nomJoueur << " la carte " << ask << " ";
+        std::cout << nomJoueur << " demande a " << target.nomJoueur << " la carte " << ask << " " << std::endl;
 
         if (target.giveCard(ask)) {
-            std::cout << target.nomJoueur << " donne la carte à " << nomJoueur << std::endl;
+            std::cout << "  et " << target.nomJoueur << " donne la carte a " << nomJoueur << std::endl;
             ajoutCarte(ask, cardsPerFamily);
         } else {
-            std::cout << "mais " << target.nomJoueur << " ne l'a pas" << std::endl;
+            std::cout << "  mais " << target.nomJoueur << " ne l'a pas" << std::endl;
             return;
         }
     }
