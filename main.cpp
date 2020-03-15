@@ -1,25 +1,27 @@
-/* ---------------------------
-Laboratoire :
-Fichier : main.cpp
-Auteur(s) : Besseau
-Date : 24-02-2020
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 03
+ Fichier     : main.cpp
+ Auteur(s)   : Léonard Besseau, Alexandra Cerottini, Nicolas Viotti
+ Date        : 24.02.2020
 
-But :
+ But         : Construire un système pouvant jouer au jeu des 7 familles
 
-Remarque(s) :
+ Remarque(s) :
 
-Compilateur : gcc version 7.4.0
+ Compilateur : gcc version 7.4.0
+ -----------------------------------------------------------------------------------
+*/
 
---------------------------- */
 #include <iostream>
 #include "Partie.h"
 
 int main() {
     const int nbPlays = 100;
-    std::cout << "Hello, World!" << std::endl;
-    std::vector<std::string> name{"Adolf", "Benito", "Joseph", "Miguel"};
+    std::cout << "Debut de la partie de 7 familles" << std::endl;
+    std::vector<std::string> name{"Alice", "Bobby", "Carol", "Danny"};
     std::vector<unsigned> score(4);
-    MeilleurJoueur p1;
+    Joueur p1;
     Joueur p2;
     Joueur p3;
     Joueur p4;

@@ -1,6 +1,17 @@
-//
-// Created by leonard on 3/6/20.
-//
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 03
+ Fichier     : Carte.cpp
+ Auteur(s)   : Léonard Besseau, Alexandra Cerottini, Nicolas Viotti
+ Date        : 24.02.2020
+
+ But         : Contient les fonctions liées à la classe Carte
+
+ Remarque(s) :
+
+ Compilateur : gcc version 7.4.0
+ -----------------------------------------------------------------------------------
+*/
 
 #include "Carte.h"
 #include <algorithm>
