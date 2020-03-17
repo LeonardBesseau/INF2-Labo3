@@ -18,6 +18,9 @@
 
 int main() {
     const int nbPlays = 100;
+    const unsigned nbFamily = 9;
+    const unsigned nbCardsPerFamily = 4;
+    const unsigned nbCardsPerPlayer = 5;
     std::cout << "Debut de la partie de 7 familles" << std::endl;
     std::vector<std::string> name{"Alice", "Bobby", "Carol", "Danny"};
     MeilleurJoueur p1(name.at(0));
@@ -26,14 +29,15 @@ int main() {
     Joueur p4(name.at(3));
     std::vector<Joueur *> list{&p1, &p2, &p3, &p4};
 
+
     for (int i = 0; i < nbPlays; ++i) {
-        Partie a(list, 9, 4, 5);
+        Partie a(list, nbFamily, nbCardsPerFamily, nbCardsPerPlayer);
         a.play(i);
     }
     std::cout << std::endl;
-    std::cout <<"Pourcentage de victoire apres " << nbPlays << " parties:" << std::endl;
+    std::cout << "Pourcentage de victoire apres " << nbPlays << " parties:" << std::endl;
     for (int k = 0; k < name.size(); ++k) {
-        std::cout << name.at(k) << " : " << (double)list.at(k)->getScore()/9 <<"%" << std::endl;
+        std::cout << name.at(k) << " : " << (double) list.at(k)->getScore() / nbFamily << "%" << std::endl;
     }
     return 0;
 }
