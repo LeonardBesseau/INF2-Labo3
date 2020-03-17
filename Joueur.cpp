@@ -18,14 +18,14 @@
 #include <algorithm>
 
 
-Joueur::Joueur(const std::string &name) : nomJoueur(name), score(0) {}
+Joueur::Joueur(const std::string &name) : name(name), score(0) {}
 
 
 void Joueur::detecterFamille(unsigned cardsPerFamily) {
-    std::sort(cartesEnMains.begin(), cartesEnMains.end());
+    std::sort(deck.begin(), deck.end());
     size_t index = 0;
     unsigned family = 1;
-    size_t limit = cartesEnMains.size();
+    size_t limit = deck.size();
 
     while (index < limit) {
         unsigned number = numberOfMember(family, index);
@@ -33,8 +33,8 @@ void Joueur::detecterFamille(unsigned cardsPerFamily) {
 
         if (number == cardsPerFamily) {
             ajoutSurTable(index, cardsPerFamily);
-            cartesEnMains.erase(cartesEnMains.begin() + index, cartesEnMains.begin() + index + cardsPerFamily);
-            limit = cartesEnMains.size();
+            deck.erase(deck.begin() + index, deck.begin() + index + cardsPerFamily);
+            limit = deck.size();
         } else {
             index += number;
         }
@@ -43,62 +43,62 @@ void Joueur::detecterFamille(unsigned cardsPerFamily) {
 }
 
 void Joueur::ajoutSurTable(unsigned index, unsigned cardsPerFamily) {
-    familleSurTable.insert(familleSurTable.end(), cartesEnMains.begin() + index,
-                           cartesEnMains.begin() + index + cardsPerFamily);
+    completedFamillies.insert(completedFamillies.end(), deck.begin() + index,
+                              deck.begin() + index + cardsPerFamily);
 }
 
 void Joueur::ajoutCarte(Carte &carte, unsigned cardsPerFamily) {
-    this->cartesEnMains.push_back(carte);
+    this->deck.push_back(carte);
     detecterFamille(cardsPerFamily);
 }
 
 bool Joueur::mainVide() const {
-    return cartesEnMains.empty();
+    return deck.empty();
 }
 
 unsigned Joueur::nbCarteStack() const {
-    return familleSurTable.size();
+    return completedFamillies.size();
 }
 
 void Joueur::play(Joueur &target, unsigned cardsPerFamily) {
     while (true) {
-        if (cartesEnMains.empty()) {
+        if (deck.empty()) {
             return;
         }
         Carte ask = choseCard();
 
-        std::cout << nomJoueur << " demande a " << target.nomJoueur << " la carte " << ask << " " << std::endl;
+        std::cout << name << " demande a " << target.name << " la carte " << ask << " " << std::endl;
 
         if (target.giveCard(ask)) {
-            std::cout << "  et " << target.nomJoueur << " donne la carte a " << nomJoueur << std::endl;
+            std::cout << "  et " << target.name << " donne la carte a " << name << std::endl;
             ajoutCarte(ask, cardsPerFamily);
         } else {
-            std::cout << "  mais " << target.nomJoueur << " ne l'a pas" << std::endl;
+            std::cout << "  mais " << target.name << " ne l'a pas" << std::endl;
             return;
         }
     }
 }
 
 Carte Joueur::choseCard() const {
-    return findMissingMember(cartesEnMains.front().getFamily());
+    return findMissingMember(deck.front().getFamily());
 }
 
 bool Joueur::giveCard(const Carte &c) {
-    auto pos = std::find(cartesEnMains.begin(), cartesEnMains.end(), c);
-    if (pos != cartesEnMains.end()) {
-        cartesEnMains.erase(pos);
+    auto pos = std::find(deck.begin(), deck.end(), c);
+    if (pos != deck.end()) {
+        deck.erase(pos);
         return true;
     }
     return false;
 }
 
 std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs) {
-    lhs << rhs.nomJoueur << " : ";
-    for (const Carte &c : rhs.cartesEnMains) {
+    lhs << rhs.name << " : ";
+    for (const Carte &c : rhs.deck) {
         lhs << c << " ";
     }
     lhs << "[";
-    for (const Carte &c : rhs.familleSurTable) {
+    for (const Carte &c : rhs.completedFamillies) {
         lhs << c << ".";
     }
     lhs << "]";
@@ -106,31 +106,31 @@ std::ostream &operator<<(std::ostream &lhs, const Joueur &rhs) {
 }
 
 const std::string &Joueur::getNomJoueur() const {
-    return nomJoueur;
+    return name;
 }
 
 void Joueur::assign(const std::vector<Carte> &cartes, unsigned cardsPerFamily) {
-    cartesEnMains = cartes;
+    deck = cartes;
     detecterFamille(cardsPerFamily);
 }
 
 void Joueur::clearPlayer() {
-    familleSurTable.clear();
+    completedFamillies.clear();
 }
 
 Carte Joueur::findMissingMember(unsigned family) const {
     unsigned member = 1;
     Carte search = Carte(family, member);
-    auto pos = std::find(cartesEnMains.begin(), cartesEnMains.end(), search);
-    while (pos != cartesEnMains.end()) {
+    auto pos = std::find(deck.begin(), deck.end(), search);
+    while (pos != deck.end()) {
         search = Carte(family, ++member);
-        pos = std::find(cartesEnMains.begin(), cartesEnMains.end(), search);
+        pos = std::find(deck.begin(), deck.end(), search);
     }
     return search;
 }
 
 unsigned Joueur::numberOfMember(unsigned family, unsigned index) const {
-    return std::count_if(cartesEnMains.begin() + index, cartesEnMains.end(),
+    return std::count_if(deck.begin() + index, deck.end(),
                          [family](const Carte &c) {
                              return c.getFamily() == family;
                          });

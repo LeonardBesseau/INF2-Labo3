@@ -10,7 +10,7 @@ Carte MeilleurJoueur::choseCard() const {
     unsigned max = 0;
     unsigned familyMax = 1;
 
-    while (index < cartesEnMains.size()) {
+    while (index < deck.size()) {
         unsigned count = numberOfMember(family);
         if (count > max) {
             familyMax = family;

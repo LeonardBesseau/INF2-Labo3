@@ -22,6 +22,11 @@ class MeilleurJoueur : public Joueur {
 public:
     MeilleurJoueur(const std::string &name) : Joueur(name) {};
 protected:
+    /**
+     * Chose which card to ask
+     * @return a Carte, the one to ask from the other player
+     * @details choose a card from the most populated family in the deck
+     */
     Carte choseCard() const override;
 };
 

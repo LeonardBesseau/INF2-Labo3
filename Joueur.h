@@ -53,6 +53,9 @@ public:
     unsigned nbCarteStack() const;
 
 
+    /**
+     * Clear the completed famiiies deck
+     */
     void clearPlayer();
 
 
@@ -78,8 +81,16 @@ public:
      */
     const std::string &getNomJoueur() const;
 
+    /**
+     * Get the score of the player
+     * @return an unsigned with the score of the player
+     */
     unsigned int getScore() const;
 
+    /**
+     * Add points to the score player
+     * @param score an unsigned the points to add
+     */
     void addScore(unsigned score);
 
 protected:
@@ -89,11 +100,22 @@ protected:
      */
     virtual Carte choseCard() const;
 
+    /**
+     * Find a missing member of a family based on the player deck
+     * @param family the family to look for
+     * @return a Card missing in the player deck
+     */
     Carte findMissingMember(unsigned family) const;
 
+    /**
+     * Get the number of member of a given family in the player deck
+     * @param family the family to look for
+     * @param index a position  of where to start the search if the list is sorted
+     * @return an unsigned, the number of mumber of the family
+     */
     unsigned numberOfMember(unsigned family, unsigned index = 0) const;
 
-    std::vector<Carte> cartesEnMains;
+    std::vector<Carte> deck;
 
 private:
     /**
@@ -119,8 +141,8 @@ private:
      */
     bool giveCard(const Carte &c);
 
-    std::string nomJoueur;
-    std::vector<Carte> familleSurTable;
+    std::string name;
+    std::vector<Carte> completedFamillies;
     unsigned score;
 
 };
