@@ -32,7 +32,7 @@ public:
 
     /**
      * Get the member attribute
-     * @return an unsigned with the value of the familly
+     * @return an unsigned with the value of the family
      */
     unsigned short getFamily() const;
 

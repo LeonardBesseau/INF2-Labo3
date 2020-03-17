@@ -27,11 +27,13 @@ int main() {
     std::vector<Joueur *> list{&p1, &p2, &p3, &p4};
 
     for (int i = 0; i < nbPlays; ++i) {
-        Partie a(list, 8, 4, 5);
+        Partie a(list, 9, 4, 5);
         a.play(i);
     }
+    std::cout << std::endl;
+    std::cout <<"Pourcentage de victoire apres " << nbPlays << " parties:" << std::endl;
     for (int k = 0; k < name.size(); ++k) {
-        std::cout << list.at(k)->getScore() << std::endl;
+        std::cout << name.at(k) << " : " << (double)list.at(k)->getScore()/9 <<"%" << std::endl;
     }
     return 0;
 }

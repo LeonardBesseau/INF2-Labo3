@@ -34,7 +34,7 @@ public:
 
 
     /**
-   * Asign a deck to the player
+   * Assign a deck to the player
    * @param carte a vector of cartes the new deck of the player
    * @param cardsPerFamily the number of card per family
    */
@@ -54,14 +54,14 @@ public:
 
 
     /**
-     * Clear the completed famiiies deck
+     * Clear the completed families deck
      */
     void clearPlayer();
 
 
     /**
      * Add a Carte to the player deck
-     * @param carte the carte to add
+     * @param carte the card to add
      * @param cardsPerFamily the number of card per family
      */
     void ajoutCarte(Carte &carte, unsigned cardsPerFamily);
@@ -111,7 +111,7 @@ protected:
      * Get the number of member of a given family in the player deck
      * @param family the family to look for
      * @param index a position  of where to start the search if the list is sorted
-     * @return an unsigned, the number of mumber of the family
+     * @return an unsigned, the number of member of the family
      */
     unsigned numberOfMember(unsigned family, unsigned index = 0) const;
 
