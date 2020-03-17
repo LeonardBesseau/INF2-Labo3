@@ -29,14 +29,16 @@ public:
     /**
      * Construct a player
      * @param name a string with the name of the player
-     * @param cartes a vector of Carte the deck of the player
      */
-    Joueur(const std::string &name, const std::vector<Carte> &cartes);
-
-    Joueur() = default;
+    Joueur(const std::string &name);
 
 
-    void assign(const std::string &name, const std::vector<Carte> &cartes);
+    /**
+   * Asign a deck to the player
+   * @param carte a vector of cartes the new deck of the player
+   * @param cardsPerFamily the number of card per family
+   */
+    void assign(const std::vector<Carte> &cartes, unsigned cardsPerFamily);
 
     /**
      * Indicates if the player has no more card in its deck
@@ -75,6 +77,10 @@ public:
      * @return a string with the player name
      */
     const std::string &getNomJoueur() const;
+
+    unsigned int getScore() const;
+
+    void addScore(unsigned score);
 
 protected:
     /**
@@ -115,6 +121,8 @@ private:
 
     std::string nomJoueur;
     std::vector<Carte> familleSurTable;
+    unsigned score;
+
 };
 
 

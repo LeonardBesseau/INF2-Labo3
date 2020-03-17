@@ -38,9 +38,7 @@ unsigned generateRandomNumber(unsigned maxRange, unsigned forbidden) {
 }
 
 
-Partie::Partie(const std::vector<std::string> &playerName, std::vector<Joueur *> list, unsigned nbFamily,
-               unsigned cardsPerFamily,
-               unsigned cardsPerPlayer)
+Partie::Partie(std::vector<Joueur *> list, unsigned nbFamily, unsigned cardsPerFamily, unsigned cardsPerPlayer)
         : cardPerFamily(cardsPerFamily) {
 
     std::vector<Carte> cards;
@@ -55,19 +53,18 @@ Partie::Partie(const std::vector<std::string> &playerName, std::vector<Joueur *>
 
     std::shuffle(cards.begin(), cards.end(),
                  std::mt19937(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
-
-    for (int i = 0; i < playerName.size(); ++i) {
+    for (int i = 0; i < list.size(); ++i) {
         list.at(i)->clearPlayer();
-        list.at(i)->assign(playerName.at(i), std::vector<Carte>(cards.begin() + i * cardsPerPlayer,
-                                                                cards.begin() + i * cardsPerPlayer + cardsPerPlayer));
+        list.at(i)->assign(std::vector<Carte>(cards.begin() + i * cardsPerPlayer,
+                                              cards.begin() + i * cardsPerPlayer + cardsPerPlayer), cardsPerFamily);
 
         player.push_back(list.at(i));
     }
 
-    stack.assign(cards.begin() + playerName.size() * cardsPerPlayer, cards.end());
+    stack.assign(cards.begin() + list.size() * cardsPerPlayer, cards.end());
 }
 
-std::vector<unsigned> Partie::play(unsigned startPerson) {
+void Partie::play(unsigned startPerson) {
     std::vector<unsigned int> score(player.size());
     bool isPlaying = true;
     unsigned turn = 1;
@@ -106,10 +103,9 @@ std::vector<unsigned> Partie::play(unsigned startPerson) {
     displayStack();
     std::cout << "La partie est finie !" << std::endl << "Nombre de tours : " << turn << std::endl;
 
-    for (int i = 0; i < player.size(); ++i) {
-        score.at(i) = player.at(i)->nbCarteStack() / cardPerFamily;
+    for (auto &i : player) {
+        i->addScore(i->nbCarteStack() / cardPerFamily);
     }
-    return score;
 }
 
 void Partie::displayStack() {

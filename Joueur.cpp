@@ -18,7 +18,7 @@
 #include <algorithm>
 
 
-Joueur::Joueur(const std::string &name, const std::vector<Carte> &cartes) : nomJoueur(name), cartesEnMains(cartes) {}
+Joueur::Joueur(const std::string &name) : nomJoueur(name), score(0) {}
 
 
 void Joueur::detecterFamille(unsigned cardsPerFamily) {
@@ -109,9 +109,9 @@ const std::string &Joueur::getNomJoueur() const {
     return nomJoueur;
 }
 
-void Joueur::assign(const std::string &name, const std::vector<Carte> &cartes) {
-    nomJoueur = name;
+void Joueur::assign(const std::vector<Carte> &cartes, unsigned cardsPerFamily) {
     cartesEnMains = cartes;
+    detecterFamille(cardsPerFamily);
 }
 
 void Joueur::clearPlayer() {
@@ -134,5 +134,14 @@ unsigned Joueur::numberOfMember(unsigned family, unsigned index) const {
                          [family](const Carte &c) {
                              return c.getFamily() == family;
                          });
+}
+
+unsigned int Joueur::getScore() const {
+    return score;
+}
+
+void Joueur::addScore(unsigned score) {
+    this->score += score;
+
 }
 

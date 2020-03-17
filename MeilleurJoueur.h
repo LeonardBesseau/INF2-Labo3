@@ -20,7 +20,7 @@
 
 class MeilleurJoueur : public Joueur {
 public:
-    MeilleurJoueur() = default;
+    MeilleurJoueur(const std::string &name) : Joueur(name) {};
 protected:
     Carte choseCard() const override;
 };
